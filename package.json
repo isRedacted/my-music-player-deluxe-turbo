@@ -10,5 +10,10 @@
   "description": "",
   "devDependencies": {
     "electron": "^35.2.1"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "split.js": "^1.6.5",
+    "tailwindcss": "^4.1.4"
   }
 }
