@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <title>My Music Player DELUXE TURBO</title>
-  </head>
-  <body>
-  </body>
+
+<head>
+	<meta charset="UTF-8" />
+	<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+	<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+	<link rel="stylesheet" href="output.css">
+	<script src="renderer.js"></script>
+	<title>My Music Player DELUXE TURBO</title>
+</head>
+
+<body>
+	<div id="split-view-main" class="w-full h-screen bg-orange-500">
+		<div id="sidebar" class=""></div>
+		<div id="main-content-area" class=""></div>
+	</div>
+	<div id="control-panel"></div>
+</body>
+
 </html>
