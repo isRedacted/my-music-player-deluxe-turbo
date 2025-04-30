@@ -24,9 +24,9 @@
     --color-backgroundColor: #0f0f0f;
     --color-accentColor: #569cd6;
 
-    --text-fontSizeBig: 32;
-    --text-fontSizeMedium: 24;
-    --text-fontSizeSmall: 14;
+    --text-fontSizeBig: 32px;
+    --text-fontSizeMedium: 24px;
+    --text-fontSizeSmall: 14px;
 }
 
 /* Global stuff */
@@ -64,7 +64,6 @@ button {
         color: rgb(59, 124, 255);
     }
 }
-
 .rainbow {
     animation-name: rainbow;
     animation-duration: 3s;
