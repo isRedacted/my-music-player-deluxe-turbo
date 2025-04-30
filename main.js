@@ -1,7 +1,6 @@
 const { app, ipcMain, dialog } = require('electron');
 const path = require('path');
 const windowManager = require('electron-window-manager');
-const fs = require('fs');
 const settingsFile = path.join(__dirname, '/settings.json');
 
 const createInitialWindow = () => {
@@ -18,6 +17,7 @@ const createInitialWindow = () => {
 	);
 
 	// Get settings file and open main window, or open library dialog window if non existent
+	const fs = require('fs');
 	if (fs.existsSync(settingsFile)) {
 		fs.readFile(settingsFile, 'utf-8', (err, data) => {
 			if (err) {
