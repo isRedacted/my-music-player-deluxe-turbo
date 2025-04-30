@@ -23,6 +23,10 @@
     --color-secondaryColor: #333333;
     --color-backgroundColor: #0f0f0f;
     --color-accentColor: #569cd6;
+
+    --text-fontSizeBig: 32;
+    --text-fontSizeMedium: 24;
+    --text-fontSizeSmall: 14;
 }
 
 /* Global stuff */
@@ -39,12 +43,31 @@ button {
     filter: brightness(100%);
     transition: filter 0.2s ease;
 }
-
 .clickable:hover {
     filter: brightness(150%);
 }
-
 .clickable:active {
     filter: brightness(100%);
     transition: filter 0.2s ease;
+}
+
+@keyframes rainbow {
+    0% {
+        color: magenta;
+    }
+
+    50% {
+        color: plum;
+    }
+
+    100% {
+        color: rgb(59, 124, 255);
+    }
+}
+
+.rainbow {
+    animation-name: rainbow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
