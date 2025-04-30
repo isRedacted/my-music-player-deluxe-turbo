@@ -1,10 +1,8 @@
 const { app, ipcMain, dialog } = require('electron');
 const path = require('path');
 const windowManager = require('electron-window-manager');
+const settingsFile = path.join(__dirname, '/settings.json');
 const fs = require('fs');
-const registerIpcHandlers = require('./ipcHandlers')
-
-const settingsFile = './settings.json';
 
 const createInitialWindow = () => {
 	var library = '';
@@ -40,10 +38,25 @@ const createInitialWindow = () => {
 	}
 }
 
+// IPC api handlers
+// Folder select handler
+ipcMain.handle('dialog:openFolder', async () => {
+	const result = await dialog.showOpenDialog({
+		title: 'Select Music Library Folder',
+		defaultPath: app.getPath('music'),
+		properties: ['openDirectory']
+	});
+	return result.canceled ? null : result.filePaths[0];
+});
+
+// Handle JSON read/write operations
+ipcMain.handle('read-json', () => {
+	const data = JSON.parse(fs.readFileSync(jsonFile, 'utf-8'))
+})
+
 app.on('ready', () => {
 	windowManager.init();
 	createInitialWindow();
-	registerIpcHandlers();
 })
 
 app.on('window-all-closed', () => {
