@@ -50,17 +50,29 @@ ipcMain.handle('dialog:openFolder', async () => {
 });
 
 // Handle JSON read/write operations
-ipcMain.handle('read-json', () => {
-	const data = JSON.parse(fs.readFileSync(jsonFile, 'utf-8'))
+ipcMain.handle('write-settings-sync', (event, key, value) => {
+	let settings;
+	try {
+		settings = JSON.parse(fs.readFileSync(settingsFile, { encoding: 'utf-8' }));
+	} catch (err) {
+		settings = {};
+	}
+	settings[key] = value;
+	fs.writeFileSync(settingsFile, JSON.stringify(settings));
+})
+
+// Open new window
+ipcMain.on('open-main-window', () => {
+	//TODO: Close the library window and open the main window
 })
 
 app.on('ready', () => {
 	windowManager.init();
 	createInitialWindow();
-})
+});
 
 app.on('window-all-closed', () => {
 	if (process.platform !== 'darwin') {
 		app.quit();
 	}
-})
+});

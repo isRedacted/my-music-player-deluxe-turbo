@@ -2,6 +2,6 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
     selectFolder: () => ipcRenderer.invoke('dialog:openFolder'),
-    readJSON: () => ipcRenderer.invoke('read-json'),
-    writeJSON: (data) => ipcRenderer.invoke('write-json', data)
+    writeSettingsSync: (key, value) => ipcRenderer.invoke('write-settings-sync', key, value),
+    openMainWindow: () => ipcRenderer.send('open-main-window')
 });
