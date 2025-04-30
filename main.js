@@ -42,6 +42,8 @@ const createInitialWindow = () => {
 // Folder select handler
 ipcMain.handle('dialog:openFolder', async () => {
 	const result = await dialog.showOpenDialog({
+		title: 'Select Music Library Folder',
+		defaultPath: app.getPath('music'),
 		properties: ['openDirectory']
 	});
 	return result.canceled ? null : result.filePaths[0];
