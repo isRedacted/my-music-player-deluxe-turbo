@@ -10,9 +10,14 @@
 	<title>My Music Player DELUXE TURBO</title>
 </head>
 
-<body>
-	<h1 id="test">test</h1>
-	<img id="libraryPicker" src="./assets/folder.svg" />
+<body class="bg-primaryColor text-white">
+	<h1 id="test">SELECT LIBRARY LOCATION</h1>
+	<div id="libraryBox">
+		<p type="text" id="libraryInput" name="libraryInput" class="bg-primaryColor outline-accentColor"></p>
+		<img id="libraryPicker" src="./assets/new_folder.svg" class="fill-accentColor clickable" />
+	</div>
+	<button type="button" id="libraryProceed"
+		class="bg-primaryColor outline-accentColor text-accentColor clickable">Proceed</button>
 </body>
 <script src="renderer.js"></script>
 
