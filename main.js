@@ -2,7 +2,7 @@ const { app, ipcMain, dialog } = require('electron');
 const path = require('path');
 const windowManager = require('electron-window-manager');
 const fs = require('fs');
-const settingsFile = '/settings.json';
+const settingsFile = path.join(__dirname, '/settings.json');
 
 const createInitialWindow = () => {
 	var library = '';
@@ -17,7 +17,7 @@ const createInitialWindow = () => {
 		}
 	);
 
-	// Get settings file, or open library dialog if non existent
+	// Get settings file and open main window, or open library dialog window if non existent
 	if (fs.existsSync(settingsFile)) {
 		fs.readFile(settingsFile, 'utf-8', (err, data) => {
 			if (err) {
@@ -38,6 +38,7 @@ const createInitialWindow = () => {
 	}
 }
 
+// IPC api handlers
 // Folder select handler
 ipcMain.handle('dialog:openFolder', async () => {
 	const result = await dialog.showOpenDialog({
@@ -45,7 +46,6 @@ ipcMain.handle('dialog:openFolder', async () => {
 	});
 	return result.canceled ? null : result.filePaths[0];
 });
-
 
 app.on('ready', () => {
 	windowManager.init();
