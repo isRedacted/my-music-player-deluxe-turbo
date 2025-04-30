@@ -1,3 +1,6 @@
-import Split from 'split.js'
-
-Split(['#sidebar', '#main-content-area'])
+// Event handlers
+// Library icon pick
+document.getElementById("libraryPicker").addEventListener('click', async () => {
+    const folder = await window.electronAPI.selectFolder();
+    console.log(folder);
+});
