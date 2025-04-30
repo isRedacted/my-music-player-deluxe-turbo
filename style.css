@@ -17,3 +17,34 @@
 
 /* Tailwind stuff */
 @import "tailwindcss";
+
+@theme {
+    --color-primaryColor: #232323;
+    --color-secondaryColor: #333333;
+    --color-backgroundColor: #0f0f0f;
+    --color-accentColor: #569cd6;
+}
+
+/* Global stuff */
+button {
+    outline-style: solid;
+    outline-width: 1px;
+    border-radius: 10%;
+    padding: 0.3rem;
+    font-weight: 600;
+}
+
+.clickable {
+    cursor: pointer;
+    filter: brightness(100%);
+    transition: filter 0.2s ease;
+}
+
+.clickable:hover {
+    filter: brightness(150%);
+}
+
+.clickable:active {
+    filter: brightness(100%);
+    transition: filter 0.2s ease;
+}
