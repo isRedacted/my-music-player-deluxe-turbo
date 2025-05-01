@@ -13,7 +13,7 @@ A (work in progress) music player that does all the things *I* want it to do. No
 - Tag editing
 - Android/iOS (on the "nice to have" list)
 - Free forever (beer and speech)
-	- I'm making this for fun and to improve my programming skills, I will never ever ever charge money for it or any of its features
+	- I'm making this for fun and to improve my programming skills. I will never ever ever charge money for it or any of its features.
 
 # Installation
 ## Windows
@@ -26,7 +26,7 @@ A (work in progress) music player that does all the things *I* want it to do. No
 ### Prerequisites
 - Node.JS v22 but earlier versions probably work fine
 ### Instructions
-1. Clone with `git clone https://github.com/isRedacted/my-music-player-deluxe-turbo` or download the code from source.
-2. Run `npm install` in the program folder.
-3. Run `npx @tailwindcss/cli -i ./style.css -o ./output.css` to convert the stylesheet into Tailwind CSS.
-4. Run with `npm start`.
+1. Clone with `git clone https://github.com/isRedacted/my-music-player-deluxe-turbo` or download the code from source
+2. Run `npm install` in the program folder
+3. Run `npx @tailwindcss/cli -i ./style.css -o ./output.css` to convert the stylesheet into Tailwind CSS
+4. Run with `npm start`
