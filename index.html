@@ -7,16 +7,20 @@
 	<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
 	<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
 	<link rel="stylesheet" href="output.css">
-	<script src="renderer.js"></script>
 	<title>My Music Player DELUXE TURBO</title>
 </head>
 
-<body>
-	<div id="split-view-main" class="w-full h-screen bg-backgroundColor">
-		<div id="sidebar" class=""></div>
-		<div id="main-content-area" class=""></div>
+<body class="h-screen m-0">
+	<div class="flex flex-col h-screen">
+		<div id="main-split-pane" class="w-full h-screen bg-backgroundColor flex">
+			<div id="sidebar" class="w-1/2 bg-amber-50"></div>
+			<div id="handle" class="w-1 bg-accentColor"></div>
+			<div id="main-content-area" class="flex-1 bg-amber-400"></div>
+		</div>
+		<div id="control-panel" class="bg-secondaryColor h-19">
+		</div>
 	</div>
-	<div id="control-panel"></div>
 </body>
+<script src="renderer.js"></script>
 
 </html>
