@@ -29,7 +29,9 @@ windowManager.setDefaultSetup(
 		'height': 360,
 		'webPreferences': {
 			'preload': path.join(__dirname, 'preload.js')
-		}
+		},
+		'minWidth': 640,
+		'minHeight': 360
 	}
 );
 windowManager.templates.set('main', {
@@ -38,7 +40,9 @@ windowManager.templates.set('main', {
 	'resizable': true,
 	'webPreferences': {
 		'preload': path.join(__dirname, 'preload.js')
-	}
+	},
+	'minWidth': 640,
+	'minHeight': 360
 });
 
 const createInitialWindow = () => {
@@ -52,7 +56,7 @@ const createInitialWindow = () => {
 			windowManager.open('main', false, '/index.html', 'main');
 		}
 	} catch (err) {
-		windowManager.open('noLibrary', false, '/no_library.html');
+		windowManager.open('no_library', false, '/no_library.html');
 	}
 }
 
@@ -83,11 +87,7 @@ ipcMain.handle('write-settings-sync', (event, key, value) => {
 ipcMain.on('open-main-window', (event) => {
 	//TODO: Close the library window and open the main window
 	windowManager.closeAll();
-	windowManager.createNew(undefined, undefined, '/index.html', false, {
-		'width': 1280,
-		'height': 720,
-		'resizable': true
-	});
+	windowManager.open('main', false, '/index.html', 'main');
 })
 
 app.on('ready', () => {
