@@ -14,7 +14,6 @@
   "dependencies": {
     "@tailwindcss/cli": "^4.1.4",
     "electron-window-manager": "^1.0.6",
-    "split.js": "^1.6.5",
     "tailwindcss": "^4.1.4"
   }
 }
