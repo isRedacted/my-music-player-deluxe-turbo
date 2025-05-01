@@ -70,3 +70,10 @@ button {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
+
+.gutter {
+    background-color: var(--color-backgroundColor);
+}
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+}
