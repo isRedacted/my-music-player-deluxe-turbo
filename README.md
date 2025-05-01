@@ -5,14 +5,14 @@ A (work in progress) music player that does all the things *I* want it to do. No
 
 # Planned Features
 - M3U-based playlist organisation
-  - Relative pathing for easy syncing
+	- Relative pathing for easy syncing using a service like [Syncthing](https://syncthing.net/)
 - Supports MP3, M4A, FLAC, and WAV
 - Library browsing
 - Background file monitoring for changes
 - Last.fm integration
 - Tag editing
 - Android/iOS (on the "nice to have" list)
-- Free forever (beer and speech)
+- Free forever (like beer and speech)
 	- I'm making this for fun and to improve my programming skills. I will never ever ever charge money for it or any of its features.
 
 # Installation
@@ -23,10 +23,12 @@ A (work in progress) music player that does all the things *I* want it to do. No
 ## Linux
 **TBD**
 ## From source
-### Prerequisites
-- Node.JS v22 but earlier versions probably work fine
+### Prerequisite
+- [Node.JS](https://nodejs.org/en/download) (Developed with v22 but earlier versions probably work fine)
 ### Instructions
 1. Clone with `git clone https://github.com/isRedacted/my-music-player-deluxe-turbo` or download the code from source
-2. Run `npm install` in the program folder
-3. Run `npx @tailwindcss/cli -i ./style.css -o ./output.css` to convert the stylesheet into Tailwind CSS
-4. Run with `npm start`
+2. Open program folder root with terminal of choice
+3. Run the following commands:
+	- `npm install` to install libraries
+	- `npx @tailwindcss/cli -i ./style.css -o ./pages/output.css` to convert the stylesheet into Tailwind CSS
+	- `npm start` to start
