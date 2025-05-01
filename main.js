@@ -18,34 +18,31 @@ function writeSettings(key, value) {
 		settings = readSettings();
 	} finally {
 		settings[key] = value;
-		fs.writeFileSync(settingsFile, JSON.stringify(settings));
+		fs.writeFileSync(settingsFile, JSON.stringify(settings, undefined, 4));
 	}
 }
 
 // Set window templates
 windowManager.setDefaultSetup(
 	{
-		'width': 640,
-		'height': 360,
-		'webPreferences': {
-			'preload': path.join(__dirname, '/scripts/preload.js')
+		width: 640,
+		height: 360,
+		webPreferences: {
+			preload: path.join(__dirname, '/scripts/preload.js')
 		},
-		'minWidth': 640,
-		'minHeight': 360,
-		'backgroundColor': '#232323'
+		minWidth: 640,
+		minHeight: 360
 	}
 );
 windowManager.templates.set('main', {
-	'width': 1280,
-	'height': 720,
-	'resizable': true,
-	'webPreferences': {
-		'preload': path.join(__dirname, '/scripts/preload.js')
+	width: 1280,
+	height: 720,
+	resizable: true,
+	webPreferences: {
+		preload: path.join(__dirname, '/scripts/preload.js')
 	},
-	'minWidth': 640,
-	'minHeight': 360,
-	'backgroundColor': '#232323'
-
+	minWidth: 640,
+	minHeight: 360
 });
 
 const createInitialWindow = () => {
@@ -75,16 +72,19 @@ ipcMain.handle('dialog:openFolder', async () => {
 });
 
 // Handle JSON read/write operations
-ipcMain.handle('write-settings-sync', (event, key, value) => {
+ipcMain.handle('read-settings', (event) => {
+	return readSettings();
+});
+
+ipcMain.handle('write-settings', (event, key, value) => {
 	let settings;
 	try {
 		settings = readSettings();
 	} catch (err) {
 		settings = {};
 	}
-	settings[key] = value;
-	fs.writeFileSync(settingsFile, JSON.stringify(settings));
-})
+	writeSettings(key, value);
+});
 
 // Open new window
 ipcMain.on('open-main-window', (event) => {
