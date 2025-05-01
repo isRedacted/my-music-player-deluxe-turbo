@@ -28,10 +28,11 @@ windowManager.setDefaultSetup(
 		'width': 640,
 		'height': 360,
 		'webPreferences': {
-			'preload': path.join(__dirname, 'preload.js')
+			'preload': path.join(__dirname, '/scripts/preload.js')
 		},
 		'minWidth': 640,
-		'minHeight': 360
+		'minHeight': 360,
+		'backgroundColor': '#232323'
 	}
 );
 windowManager.templates.set('main', {
@@ -39,10 +40,12 @@ windowManager.templates.set('main', {
 	'height': 720,
 	'resizable': true,
 	'webPreferences': {
-		'preload': path.join(__dirname, 'preload.js')
+		'preload': path.join(__dirname, '/scripts/preload.js')
 	},
 	'minWidth': 640,
-	'minHeight': 360
+	'minHeight': 360,
+	'backgroundColor': '#232323'
+
 });
 
 const createInitialWindow = () => {
@@ -53,10 +56,10 @@ const createInitialWindow = () => {
 		if (!settings.hasOwnProperty('libraryDir')) {
 			throw new Error
 		} else {
-			windowManager.open('main', false, '/index.html', 'main');
+			windowManager.open('main', false, path.join(__dirname, '/pages/index.html'), 'main');
 		}
 	} catch (err) {
-		windowManager.open('no_library', false, '/no_library.html');
+		windowManager.open('no_library', false, path.join(__dirname, '/pages/no_library.html'));
 	}
 }
 
@@ -87,7 +90,7 @@ ipcMain.handle('write-settings-sync', (event, key, value) => {
 ipcMain.on('open-main-window', (event) => {
 	//TODO: Close the library window and open the main window
 	windowManager.closeAll();
-	windowManager.open('main', false, '/index.html', 'main');
+	windowManager.open('main', false, path.join(__dirname, '/pages/index.html'), 'main');
 })
 
 app.on('ready', () => {
