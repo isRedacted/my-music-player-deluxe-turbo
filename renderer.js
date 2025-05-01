@@ -1,5 +1,6 @@
 // Main split pane stuff
 const splitInstance = Split(['#sidebar', '#main-content-area'], {
-    sizes: [25, 75],
-    maxSize: [500, Infinity]
+    sizes: [15, 85],
+    maxSize: [450, Infinity],
+    gutterSize: 5
 });
