@@ -51,7 +51,7 @@ button {
     transition: filter 0.2s ease;
 }
 
-@keyframes rainbow {
+@keyframes bisexual-lighting {
     0% {
         color: magenta;
     }
@@ -64,8 +64,8 @@ button {
         color: rgb(59, 124, 255);
     }
 }
-.rainbow {
-    animation-name: rainbow;
+.bisexual-lighting {
+    animation-name: bisexual-lighting;
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
