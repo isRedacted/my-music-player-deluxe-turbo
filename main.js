@@ -1,101 +1,36 @@
-const { app, ipcMain, dialog } = require('electron');
-const path = require('path');
-const windowManager = require('electron-window-manager');
-const fs = require('fs');
-const { error } = require('console');
-const { workerData } = require('worker_threads');
+import { app, BrowserWindow } from 'electron';
+import { join } from 'path';
+import * as templates from './scripts/window_templates.js';
+import * as settings from './scripts/handlers/settings.js';
+import { registerIPCHandlers } from './scripts/handlers/ipc.js';
 
-const settingsFile = path.join(__dirname, '/settings.json');
-// Read settings, throw an error if not found
-function readSettings() {
-	const settings = (fs.readFileSync(settingsFile, { encoding: 'utf-8' }));
-	return JSON.parse(settings);
-}
-// Read settings and/or write to file
-function writeSettings(key, value) {
-	let settings = {};
-	try {
-		settings = readSettings();
-	} finally {
-		settings[key] = value;
-		fs.writeFileSync(settingsFile, JSON.stringify(settings, undefined, 4));
-	}
-}
-
-// Set window templates
-windowManager.setDefaultSetup(
-	{
-		width: 640,
-		height: 360,
-		webPreferences: {
-			preload: path.join(__dirname, '/scripts/preload.js')
-		},
-		minWidth: 640,
-		minHeight: 360
-	}
-);
-windowManager.templates.set('main', {
-	width: 1280,
-	height: 720,
-	resizable: true,
-	webPreferences: {
-		preload: path.join(__dirname, '/scripts/preload.js')
-	},
-	minWidth: 640,
-	minHeight: 360
-});
+let win;
+const preloadDir = join()
 
 const createInitialWindow = () => {
-
 	// Get settings file and open main window, or open library dialog window if non existent
-	try {
-		let settings = readSettings();
-		if (!settings.hasOwnProperty('libraryDir')) {
-			throw new Error
-		} else {
-			windowManager.open('main', false, path.join(__dirname, '/pages/index.html'), 'main');
-		}
-	} catch (err) {
-		windowManager.open('no_library', false, path.join(__dirname, '/pages/no_library.html'));
+	const settingsJSON = settings.readSettings();
+	if (!settingsJSON.hasOwnProperty('libraryDir') || !settings.exists()) {
+		win = new BrowserWindow(templates.defaultTemplate);
+		win.loadFile('./pages/no_library.html')
+	} else {
+		win = new BrowserWindow(templates.mainTemplate);
+		win.loadFile('./pages/index.html')
 	}
+	win.once('ready-to-show', () => {
+		win.show();
+	})
 }
 
-// IPC api handlers
-// Folder select handler
-ipcMain.handle('dialog:openFolder', async () => {
-	const result = await dialog.showOpenDialog({
-		title: 'Select Music Library Folder',
-		defaultPath: app.getPath('music'),
-		properties: ['openDirectory']
-	});
-	return result.canceled ? null : result.filePaths[0];
-});
-
-// Handle JSON read/write operations
-ipcMain.handle('read-settings', (event) => {
-	return readSettings();
-});
-
-ipcMain.handle('write-settings', (event, key, value) => {
-	let settings;
-	try {
-		settings = readSettings();
-	} catch (err) {
-		settings = {};
-	}
-	writeSettings(key, value);
-});
-
-// Open new window
-ipcMain.on('open-main-window', (event) => {
-	//TODO: Close the library window and open the main window
-	windowManager.closeAll();
-	windowManager.open('main', false, path.join(__dirname, '/pages/index.html'), 'main');
-})
-
-app.on('ready', () => {
-	windowManager.init();
+app.whenReady().then(() => {
 	createInitialWindow();
+	registerIPCHandlers(win);
+
+	app.on('activate', () => {
+		if (BrowserWindow.getAllWindows().length === 0) {
+			createInitialWindow();
+		}
+	});
 });
 
 app.on('window-all-closed', () => {
