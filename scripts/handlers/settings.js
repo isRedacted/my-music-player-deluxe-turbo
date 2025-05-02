@@ -28,8 +28,5 @@ export function exists() {
 export function checkLibraryDir() {
 	const settingsJSON = readSettings();
 	const libraryDir = settingsJSON['libraryDir'];
-	console.log(exists());
-	console.log(settingsJSON.hasOwnProperty('libraryDir'));
-	console.log(existsSync(libraryDir));
 	return exists() && settingsJSON.hasOwnProperty('libraryDir') && existsSync(libraryDir);
 }
