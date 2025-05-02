@@ -1,4 +1,4 @@
-import { ipcMain, dialog, app } from 'electron';
+import { ipcMain, dialog, app, BrowserWindow } from 'electron';
 import * as settings from './settings.js';
 import * as templates from '../window_templates.js';
 
@@ -20,7 +20,12 @@ export function registerIPCHandlers(win) {
 		settings.writeSettings(key, value);
 	});
 	// Open main window
-	ipcMain.on('open-main-window', (event) => {
-		//TODO: Close the library window and open the main window
+	ipcMain.on('open-main-window', () => {
+		win.close();
+		win = new BrowserWindow(templates.mainTemplate);
+		win.loadFile('./pages/index.html')
+		win.once('ready-to-show', () => {
+			win.show()
+		})
 	});
 }
