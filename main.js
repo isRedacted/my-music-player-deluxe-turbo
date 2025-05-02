@@ -11,16 +11,11 @@ const preloadDir = join(__dirname, 'scripts', 'preload.js');
 
 const createInitialWindow = () => {
 	if (settings.checkLibraryDir()) {
-		win = new BrowserWindow({
-			...templates.mainTemplate,
-			webPreferences: {
-				preload: preloadDir
-			}
-		});
+		win = new BrowserWindow(templates.mainTemplate);
 		win.loadFile('./pages/index.html')
 	} else {
 		win = new BrowserWindow(templates.defaultTemplate);
-		win.loadFile('./pages/no_library.html')
+		win.loadFile('./pages/no_library.html');
 	}
 
 	win.once('ready-to-show', () => {
