@@ -1,9 +1,8 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import { rootDir } from '../../paths.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const settingsFile = join(__dirname, '..', '..', 'settings.json');
+const settingsFile = join(rootDir, 'settings.json');
 
 // Read settings and return JSON object, throw an error if not found
 export function readSettings(key) {
@@ -20,7 +19,8 @@ export function writeSettings(key, value) {
 	let settings = {}
 	try {
 		settings = readSettings();
-	} finally {
+	} catch (e) { }
+	finally {
 		settings[key] = value;
 		writeFileSync(settingsFile, JSON.stringify(settings, undefined, 4));
 	}

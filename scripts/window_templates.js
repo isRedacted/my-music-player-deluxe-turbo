@@ -1,9 +1,7 @@
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
+import { rootDir } from '../paths.js';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-let win;
-const preloadDir = join(__dirname, 'preload.js');
+const preloadDir = join(rootDir, 'scripts', 'preload.js');
 
 export const defaultTemplate = {
     width: 640,

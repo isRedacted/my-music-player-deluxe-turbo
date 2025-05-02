@@ -1,4 +1,6 @@
 import { ipcMain, dialog, app, BrowserWindow } from 'electron';
+import { join } from 'path';
+import { rootDir } from '../../paths.js';
 import * as settings from './settings.js';
 import * as templates from '../window_templates.js';
 
@@ -23,9 +25,13 @@ export function registerIPCHandlers(win) {
 	ipcMain.on('open-main-window', () => {
 		win.close();
 		win = new BrowserWindow(templates.mainTemplate);
-		win.loadFile('./pages/index.html')
+		win.loadFile(join(rootDir, 'pages', 'index.html'));
 		win.once('ready-to-show', () => {
-			win.show()
+			win.show();
 		})
+	});
+	// Send the app root directory to the renderer
+	ipcMain.handle('root-dir', () => {
+		return rootDir;
 	});
 }
