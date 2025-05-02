@@ -33,8 +33,7 @@ async function saveSidebarWidth() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    let settings = await window.electronAPI.readSettings();
-    let lastSidebarWidth = settings['lastSidebarWidth'];
+    const lastSidebarWidth = await window.electronAPI.readSettings('lastSidebarWidth');
     if (lastSidebarWidth == undefined) {
         sidebar.style.width = `${defaultSidebarWidth}vw`;
     } else {

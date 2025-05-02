@@ -13,10 +13,10 @@ export function registerIPCHandlers(win) {
 		return result.canceled ? null : result.filePaths[0];
 	});
 	// Handle JSON read/write operations
-	ipcMain.handle('read-settings', (event) => {
-		return settings.readSettings();
+	ipcMain.handle('read-settings', (event, key) => {
+		return settings.readSettings(key);
 	});
-	ipcMain.handle('write-settings', (event, key, value) => {
+	ipcMain.on('write-settings', (event, key, value) => {
 		settings.writeSettings(key, value);
 	});
 	// Open main window
