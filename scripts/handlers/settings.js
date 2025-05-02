@@ -1,6 +1,9 @@
 import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const settingsFile = '../../settings.json';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const settingsFile = join(__dirname, '..', '..', 'settings.json');
 
 // Read settings and return JSON object, throw an error if not found
 export function readSettings() {
@@ -19,5 +22,14 @@ export function writeSettings(key, value) {
 };
 // Check if settings exists
 export function exists() {
-	existsSync(settingsFile);
+	return existsSync(settingsFile);
 };
+// Get settings file and open main window, or open library dialog window if (settings file doesn't exist / libraryDir not in settings / libraryDir no longer exists)
+export function checkLibraryDir() {
+	const settingsJSON = readSettings();
+	const libraryDir = settingsJSON['libraryDir'];
+	console.log(exists());
+	console.log(settingsJSON.hasOwnProperty('libraryDir'));
+	console.log(existsSync(libraryDir));
+	return exists() && settingsJSON.hasOwnProperty('libraryDir') && existsSync(libraryDir);
+}

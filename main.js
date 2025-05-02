@@ -1,30 +1,36 @@
 import { app, BrowserWindow } from 'electron';
-import { join } from 'path';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
 import * as templates from './scripts/window_templates.js';
 import * as settings from './scripts/handlers/settings.js';
 import { registerIPCHandlers } from './scripts/handlers/ipc.js';
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 let win;
-const preloadDir = join()
+const preloadDir = join(__dirname, 'scripts', 'preload.js');
 
 const createInitialWindow = () => {
-	// Get settings file and open main window, or open library dialog window if non existent
-	const settingsJSON = settings.readSettings();
-	if (!settingsJSON.hasOwnProperty('libraryDir') || !settings.exists()) {
+	if (settings.checkLibraryDir()) {
+		win = new BrowserWindow({
+			...templates.mainTemplate,
+			webPreferences: {
+				preload: preloadDir
+			}
+		});
+		win.loadFile('./pages/index.html')
+	} else {
 		win = new BrowserWindow(templates.defaultTemplate);
 		win.loadFile('./pages/no_library.html')
-	} else {
-		win = new BrowserWindow(templates.mainTemplate);
-		win.loadFile('./pages/index.html')
 	}
+
 	win.once('ready-to-show', () => {
 		win.show();
-	})
+	});
+	registerIPCHandlers(win);
 }
 
 app.whenReady().then(() => {
 	createInitialWindow();
-	registerIPCHandlers(win);
 
 	app.on('activate', () => {
 		if (BrowserWindow.getAllWindows().length === 0) {

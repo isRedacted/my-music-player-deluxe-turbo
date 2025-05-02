@@ -2,6 +2,7 @@
   "name": "my-music-player-deluxe-turbo",
   "version": "1.0.0",
   "main": "main.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
@@ -10,7 +11,7 @@
   "license": "GPL-3.0-only",
   "description": "M3U playlist-based local music player",
   "devDependencies": {
-    "electron": "^35.2.1"
+    "electron": "^35.2.2"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.4",

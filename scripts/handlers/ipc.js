@@ -1,5 +1,6 @@
 import { ipcMain, dialog, app } from 'electron';
 import * as settings from './settings.js';
+import * as templates from '../window_templates.js';
 
 export function registerIPCHandlers(win) {
 	// Folder select handler
@@ -16,7 +17,7 @@ export function registerIPCHandlers(win) {
 		return settings.readSettings();
 	});
 	ipcMain.handle('write-settings', (event, key, value) => {
-		settings.writeSettings();
+		settings.writeSettings(key, value);
 	});
 	// Open main window
 	ipcMain.on('open-main-window', (event) => {
