@@ -6,7 +6,6 @@ async function populateBody() {
     const sidebarURL = await window.electronAPI.join(rootDir, 'pages', 'sidebar.html');
     const sidebarFetch = await fetch(sidebarURL);
     sidebar.innerHTML = await sidebarFetch.text();
-    // TODO: Use fetch to load sidebar
     // TODO: Check settings for last window else default to home (WILL DO WHEN PLAYLIST VIEWS ARE IMPLEMENTED)
 }
 
