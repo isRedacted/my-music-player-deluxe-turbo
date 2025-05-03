@@ -10,17 +10,18 @@
 	<title>My Music Player DELUXE TURBO</title>
 </head>
 
-<body class="bg-primaryColor text-white h-screen m-0">
-	<h1 class=" bisexual-lighting text-fontSizeBig text-center mb-10">SELECT MUSIC LIBRARY LOCATION</h1>
+<body class="bg-primaryColor text-textColor h-screen m-0 font-display">
+	<h1 class=" bisexual-lighting text-fontSizeBig text-center mb-8">SELECT MUSIC LIBRARY LOCATION</h1>
 	<div class="relative w-min-screen flex flex-col items-center">
-		<div id="libraryBox" class="mb-5">
+		<div id="libraryBox" class="mb-5.5">
 			<div class="outline w-md clickable flex justify-between rounded-sm">
 				<p type="text" id="libraryInput" name="libraryInput" class="bg-primaryColor outline-accentColor"></p>
 				<img id="libraryPicker" src="../assets/new_folder.svg" class="fill-accentColor" />
 			</div>
 		</div>
-		<button type="button" id="libraryProceed"
-			class="bg-primaryColor outline-accentColor text-accentColor clickable ml-90">Proceed</button>
+		<div id="libraryProceed" class="bg-primaryColor outline-accentColor text-accentColor outline-2 clickable ml-90 p-1 rounded">
+			Proceed
+		</div>
 	</div>
 </body>
 <script src="../scripts/renderers/no_library.js"></script>
