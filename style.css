@@ -8,16 +8,17 @@
     --color-accentColor: #569cd6;
     --color-textColor: white;
 
-    --font-display: 'Cal Sans', 'sans-serif';
+    --font-display: 'Manrope', 'sans-serif';
 
     --text-fontSizeBig: 32px;
     --text-fontSizeMedium: 24px;
-    --text-fontSizeSmall: 14px;
+    --text-fontSizeSmall: 16px;
+    --text-fontSizeTiny: 14px;
 }
 
 @font-face {
-    font-family: "Cal Sans";
-    src: url('../assets/coralpixels.ttf');
+    font-family: "Manrope";
+    src: url('../assets/manrope.ttf');
 }
 
 /* Global stuff */
