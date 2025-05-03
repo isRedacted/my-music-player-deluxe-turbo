@@ -34,4 +34,8 @@ export function registerIPCHandlers(win) {
 	ipcMain.handle('root-dir', () => {
 		return rootDir;
 	});
+	// Return the joined url
+	ipcMain.handle('join', (event, ...args) => {
+		return join(...args);
+	});
 }
