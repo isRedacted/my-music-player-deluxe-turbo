@@ -1,3 +1,5 @@
+// TODO: Fix the mouse hovering over buttons while resizing
+
 const handle = document.getElementById('handle');
 const sidebar = document.getElementById('sidebar');
 const mainSplitView = document.getElementById('main-split-area');
