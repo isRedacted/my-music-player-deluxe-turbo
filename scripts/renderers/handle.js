@@ -8,7 +8,7 @@ let animationFrameId = null;
 // Default width is in vw
 let defaultSidebarWidth = 20;
 
-let minSidebarWidth = vwToPx(15);
+const minSidebarWidth = 1;
 let maxSidebarWidth = vwToPx(50);
 let mainRect = mainSplitView.getBoundingClientRect();
 
@@ -20,11 +20,16 @@ function vwToPx(vw) {
 function updateSidebarWidth(e) {
     // Calculate new width position offset by the left coordinate of the boundary to keep in line with mouse
     let newSidebarWidthPx = e.clientX - mainRect.left;
-    // Keep new width contained in the min and max width
-    newSidebarWidthPx = Math.max(minSidebarWidth, Math.min(newSidebarWidthPx, maxSidebarWidth));
+    // Keep new width contained in the max width
+    newSidebarWidthPx = Math.min(newSidebarWidthPx, maxSidebarWidth);
 
     const newSidebarWidth = (newSidebarWidthPx / mainRect.width) * 100;
-    sidebar.style.width = `${newSidebarWidth}vw`;
+
+    if (newSidebarWidth < minSidebarWidth) {
+        sidebar.style.width = '0vw';
+    } else {
+        sidebar.style.width = `${newSidebarWidth}vw`;
+    }
 }
 
 async function saveSidebarWidth() {
@@ -43,7 +48,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 handle.addEventListener('mousedown', (e) => {
     // Recalculate sidebar width and containing boundary
-    minSidebarWidth = 0;
     maxSidebarWidth = vwToPx(50);
     mainRect = mainSplitView.getBoundingClientRect();
 
@@ -80,4 +84,4 @@ window.addEventListener('mousemove', (e) => {
         })
     }
 
-})
+});
