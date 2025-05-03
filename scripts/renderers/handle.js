@@ -55,16 +55,18 @@ handle.addEventListener('mousedown', (e) => {
 });
 
 window.addEventListener('mouseup', async () => {
-    // No, we are indeed not resizing
-    isResizing = false;
+    if (isResizing) {
+        // No, we are indeed not resizing
+        isResizing = false;
 
-    // Cancel the current animation frame
-    if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
+        // Cancel the current animation frame
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
+            animationFrameId = null;
+        }
+        document.body.style.cursor = '';
+        saveSidebarWidth();
     }
-    document.body.style.cursor = '';
-    saveSidebarWidth();
 });
 
 window.addEventListener('mousemove', (e) => {
