@@ -2,6 +2,7 @@ const sidebarSeparator = document.getElementById('sidebar-separator');
 
 function populatePlaylists() {
     // TODO: Read all m3u files in library directory and add below commented element for each
+    
     sidebarSeparator.after(newElement);
 };
 

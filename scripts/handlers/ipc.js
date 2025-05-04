@@ -14,6 +14,7 @@ export function registerIPCHandlers(win) {
 		});
 		return result.canceled ? null : result.filePaths[0];
 	});
+
 	// Handle JSON read/write operations
 	ipcMain.handle('read-settings', (event, key) => {
 		return settings.readSettings(key);
@@ -21,6 +22,7 @@ export function registerIPCHandlers(win) {
 	ipcMain.on('write-settings', (event, key, value) => {
 		settings.writeSettings(key, value);
 	});
+
 	// Open main window
 	ipcMain.on('open-main-window', () => {
 		win.close();
@@ -30,12 +32,18 @@ export function registerIPCHandlers(win) {
 			win.show();
 		})
 	});
+
 	// Send the app root directory to the renderer
 	ipcMain.handle('root-dir', () => {
 		return rootDir;
 	});
-	// Return the joined url
-	ipcMain.handle('join', (event, ...args) => {
-		return join(...args);
+
+	// Return a joined url
+	ipcMain.handle('join', (event, ...paths) => {
+		return join(...paths);
+	});
+
+	// Read and return files recursively in a folder, with arguments for extension(s)
+	ipcMain.handle('read-library-files', (event, path, ...ext) => {
 	});
 }
