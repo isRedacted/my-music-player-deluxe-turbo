@@ -1,6 +1,7 @@
+import { app } from 'electron';
 import { join } from 'path';
-import { rootDir } from '../paths.js';
 
+const rootDir = app.getAppPath();
 const preloadDir = join(rootDir, 'scripts', 'preload.js');
 
 export const defaultTemplate = {

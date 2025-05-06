@@ -1,8 +1,9 @@
 import { ipcMain, dialog, app, BrowserWindow } from 'electron';
 import { join } from 'path';
-import { rootDir } from '../../paths.js';
 import * as settings from './settings.js';
 import * as templates from '../window_templates.js';
+
+const rootDir = app.getAppPath();
 
 export function registerIPCHandlers(win) {
 	// Folder select handler

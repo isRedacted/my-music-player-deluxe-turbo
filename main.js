@@ -3,8 +3,8 @@ import { join } from 'path';
 import * as templates from './scripts/window_templates.js';
 import * as settings from './scripts/handlers/settings.js';
 import { registerIPCHandlers } from './scripts/handlers/ipc.js';
-import { rootDir } from './paths.js';
 
+const rootDir = app.getAppPath();
 let win;
 
 const createInitialWindow = () => {

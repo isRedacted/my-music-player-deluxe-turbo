@@ -1,6 +1,8 @@
+import { app } from 'electron';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { rootDir } from '../../paths.js';
+
+const rootDir = app.getAppPath();
 
 const settingsFile = join(rootDir, 'settings.json');
 
