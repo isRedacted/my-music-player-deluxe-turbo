@@ -2,6 +2,7 @@ import { ipcMain, dialog, app, BrowserWindow } from 'electron';
 import { join } from 'path';
 import * as settings from './settings.js';
 import * as templates from '../window_templates.js';
+import * as library from './library';
 
 const rootDir = app.getAppPath();
 
@@ -44,7 +45,8 @@ export function registerIPCHandlers(win) {
 		return join(...paths);
 	});
 
-	// Read and return files recursively in a folder, with arguments for extension(s)
-	ipcMain.handle('read-library-files', (event, path, ...ext) => {
+
+	ipcMain.handle('read-library-files', (event, ...ext) => {
+		library.searchLibrary(ext);
 	});
 }
