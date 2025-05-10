@@ -16,6 +16,31 @@
     --text-fontSizeTiny: 14px;
 }
 
+@layer components {
+    .playlist-button {
+        background-color: var(--color-primaryColor);
+        width: 100%;
+        border-radius: 0.25rem;
+        padding: calc(var(--spacing) * 1);
+        outline-style: var(--tw-outline-style);
+        outline-width: 1px;
+        outline-color: var(--color-accentColor);
+        margin-bottom: calc(var(--spacing) * 3);
+        display: inline-flex;
+        text-overflow: ellipsis;
+        user-select: none;
+        overflow: hidden;
+    }
+
+    .playlist-button-text {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        margin-left: calc(var(--spacing) * 1);
+        user-select: none;
+    }
+}
+
 @font-face {
     font-family: "Manrope";
     src: url('../assets/manrope.ttf');
@@ -61,4 +86,14 @@ button {
     animation-duration: 3s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+@layer utilities {
+  .parent-zero-width > .hide-if-zero-width {
+    display: none;
+  }
+
+  .parent-zero-width {
+    width: 0 !important;
+  }
 }

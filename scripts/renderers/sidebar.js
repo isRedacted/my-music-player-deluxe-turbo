@@ -1,8 +1,8 @@
 const playlistContainer = document.getElementById('playlist-container');
 
-
+// What will populate the sidebar
 function playlistTemplate(name, playlistUrl) {
-    const entryTemplate = `<div class="bg-primaryColor clickable w-full rounded p-1 outline-1 outline-accentColor mb-3 inline-flex whitespace-nowrap overflow-ellipsis overflow-clip" url="${playlistUrl}"><img class="object-none" src="../assets/music_note.svg"><p class="inline-block flex-1 whitespace-nowrap overflow-ellipsis overflow-hidden ml-1" title="${name}">${name}</p></div>`;
+    const entryTemplate = `<div class="clickable playlist-button" url="${playlistUrl}"><img class="object-none" src="../assets/music_note.svg"><p class="playlist-button-text" title="${name}">${name}</p></div>`;
     return entryTemplate;
 }
 

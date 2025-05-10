@@ -11,15 +11,13 @@
 </head>
 
 <body class="h-screen m-0 text-textColor font-display text-fontSizeSmall">
-	<div class="flex flex-col h-screen">
-		<div id="main-split-area" class="w-full h-screen flex border-b-5 border-b-backgroundColor">
+		<div id="main-split-area" class="w-full h-screen flex">
 			<!-- TODO: Ensure that if sidebar elements go off the screen they don't take the player controls with them -->
-			<div id="sidebar" class="bg-primaryColor z-0 overflow-y-auto">test</div>
+			<div id="sidebar" class="bg-primaryColor z-0"></div>
 			<div id="handle" class="w-1.25 bg-backgroundColor cursor-col-resize z-10"></div>
-			<div id="main-content-area" class="flex-1 grow-1 w-full bg-primaryColor"></div>
+			<div id="main-content-area" class="flex-1 grow-1 w-full bg-primaryColor h-full"></div>
 		</div>
-		<div id="control-panel" class="bg-secondaryColor h-19 absolute">
-		</div>
+		<div id="control-panel" class="bg-secondaryColor h-19 fixed bottom-0 left-0 border-t-5 border-t-backgroundColor z-20">
 	</div>
 </body>
 <script type="module" src="../scripts/renderers/handle.js"></script>
