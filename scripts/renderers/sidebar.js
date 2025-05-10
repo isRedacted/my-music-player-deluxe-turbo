@@ -1,21 +1,24 @@
 const playlistContainer = document.getElementById('playlist-container');
 
 
-function playlistTemplate(name, url) {
-    const entryTemplate = `<div class="bg-primaryColor clickable w-full rounded p-1 outline-1 outline-accentColor mb-3 inline-flex whitespace-nowrap overflow-ellipsis overflow-clip" id="test-playlist-button"><img class="object-none" src="../assets/music_note.svg"><p class="inline-block flex-1 whitespace-nowrap overflow-ellipsis overflow-hidden ml-1" title="${name}">${name}</p></div>`;
+function playlistTemplate(name, playlistUrl) {
+    const entryTemplate = `<div class="bg-primaryColor clickable w-full rounded p-1 outline-1 outline-accentColor mb-3 inline-flex whitespace-nowrap overflow-ellipsis overflow-clip" url="${playlistUrl}"><img class="object-none" src="../assets/music_note.svg"><p class="inline-block flex-1 whitespace-nowrap overflow-ellipsis overflow-hidden ml-1" title="${name}">${name}</p></div>`;
     return entryTemplate;
 }
 
+// Place all found playlists into an array, call the playlist template function, and insert the finished array into the html playlist container
 async function populatePlaylists() {
     const playlistFiles = await window.electronAPI.readLibraryFiles(['m3u']);
+    let playlistString = [];
     for (let p of playlistFiles) {
-        p = await window.electronAPI.basename(p);
-        playlistContainer.innerHTML += playlistTemplate(p);
+        const pBasename = await window.electronAPI.basename(p);
+        playlistString.push(playlistTemplate(pBasename, p));
     }
+    playlistContainer.innerHTML = playlistString.join('');
 };
 
-// TODO
-function entryClicked() {
+// TODO: Have function swap main content area view to chosen playlist, or library if undefined
+function entryClicked(playlistUrl) {
 
 };
 
