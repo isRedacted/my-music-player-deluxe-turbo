@@ -87,13 +87,3 @@ button {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-
-@layer utilities {
-  .parent-zero-width > .hide-if-zero-width {
-    display: none;
-  }
-
-  .parent-zero-width {
-    width: 0 !important;
-  }
-}
