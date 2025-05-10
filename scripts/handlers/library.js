@@ -1,28 +1,23 @@
 import recursiveReadDir from 'recursive-readdir';
+import { readSettings, settingsExists } from './settings.js';
 
-const libraryDir = settings.readSettings('libraryDir');
+let libraryDir;
 
-// Ignore function to not return directories or non-matching extensions
-function ignoreFunc(file, stats, ext) {
-    return !stats.isDirectory() && !file.endsWith(ext);
+if (settingsExists()) {
+    libraryDir = readSettings('libraryDir');
 }
 
-// Read and return files recursively in a folder, with arguments for extension(s). WILL throw an 
+// Read and return files recursively in a folder, with arguments for an array of extension(s).
 // Extension format is just the letters e.g. 'm3u'
-function searchLibrary(ext) {
-    const files = fs.readdirSync(libraryDir);
-    let fileList = [];
-
-    for (const file of files) {
-        const filePath = path.join(libraryDir, file);
-        const stat = fs.statSync(filePath);
-
-        if (stat.isDirectory()) {
-            readDirectoryRecursive(filePath, ext, fileList); // Recursive call for subdirectories
-        } else if (ext.includes(path.extname(file)) === `.${ext}`) {
-            fileList.push(filePath);
-        }
+// TODO: Fix extension whitelisting
+export async function readLibraryFiles(ext) {
+    if (libraryDir === undefined) {
+        libraryDir = readSettings('libraryDir');
     }
+    let extSearch = '*.{';
+    extSearch = extSearch + ext.join(', ') + '}';
+    console.log(extSearch);
 
-    return fileList;
+    const libraryFiles = await recursiveReadDir(libraryDir, [extSearch]);
+    return libraryFiles;
 }

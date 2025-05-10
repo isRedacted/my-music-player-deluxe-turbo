@@ -1,8 +1,8 @@
 import { ipcMain, dialog, app, BrowserWindow } from 'electron';
-import { join } from 'path';
+import { basename, extname, join } from 'path';
 import * as settings from './settings.js';
 import * as templates from '../window_templates.js';
-import * as library from './library';
+import { readLibraryFiles } from './library.js';
 
 const rootDir = app.getAppPath();
 
@@ -45,8 +45,13 @@ export function registerIPCHandlers(win) {
 		return join(...paths);
 	});
 
+	// Return url basename
+	ipcMain.handle('basename', (event, filePath) => {
+		return basename(filePath, extname(filePath));
+	});
 
-	ipcMain.handle('read-library-files', (event, ...ext) => {
-		library.searchLibrary(ext);
+	// Read library files of an array of extensions
+	ipcMain.handle('read-library-files', (event, ext) => {
+		return readLibraryFiles(ext);
 	});
 }

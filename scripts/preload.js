@@ -7,5 +7,6 @@ contextBridge.exposeInMainWorld('electronAPI', {
     openMainWindow: () => ipcRenderer.send('open-main-window'),
     rootDir: () => ipcRenderer.invoke('root-dir'),
     join: (...paths) => ipcRenderer.invoke('join', ...paths),
-    readLibraryFiles: (path, ...ext) => ipcRenderer.invoke('read-library-files', ...ext)
+    basename: (filePath) => ipcRenderer.invoke('basename', filePath),
+    readLibraryFiles: (ext) => ipcRenderer.invoke('read-library-files', ext)
 });

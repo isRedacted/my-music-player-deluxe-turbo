@@ -28,7 +28,7 @@ export function writeSettings(key, value) {
 	}
 };
 // Check if settings exists
-export function exists() {
+export function settingsExists() {
 	return existsSync(settingsFile);
 };
 // Get settings file and open main window, or open library dialog window if (settings file doesn't exist / libraryDir not in settings / libraryDir no longer exists)
@@ -38,6 +38,6 @@ export function checkLibraryDir() {
 		settingsJSON = readSettings();
 	} finally {
 		const libraryDir = settingsJSON['libraryDir'];
-		return exists() && settingsJSON.hasOwnProperty('libraryDir') && existsSync(libraryDir);
+		return settingsExists() && settingsJSON.hasOwnProperty('libraryDir') && existsSync(libraryDir);
 	}
 }
