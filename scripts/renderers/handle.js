@@ -4,6 +4,7 @@
 const handle = document.getElementById('handle');
 const sidebar = document.getElementById('sidebar');
 const mainSplitView = document.getElementById('main-split-area');
+const playlistButtons = document.getElementsByClassName('playlist-button');
 
 let isResizing = false;
 let animationFrameId = null;
@@ -56,6 +57,11 @@ handle.addEventListener('mousedown', (e) => {
 
     document.body.style.cursor = 'col-resize';
 
+    // Ensure elements won't annoyingly highlight under the mouse when resizing
+    for (const p of playlistButtons) {
+        p.classList.remove('clickable');
+    }
+
     // Yes, we are indeed resizing
     isResizing = true;
     e.preventDefault();
@@ -65,6 +71,11 @@ window.addEventListener('mouseup', async () => {
     if (isResizing) {
         // No, we are indeed not resizing
         isResizing = false;
+
+        // Restore clickable style when done resizing
+        for (const p of playlistButtons) {
+        p.classList.add('clickable');
+    }
 
         // Cancel the current animation frame
         if (animationFrameId) {
