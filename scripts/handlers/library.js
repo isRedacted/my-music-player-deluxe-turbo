@@ -18,7 +18,7 @@ export async function readLibraryFiles(ext) {
     extSearch = extSearch + ext.join(', ') + '}';
 
     const libraryFiles = await new fdir()
-    .filter((path, isDirectory) => path.endsWith(ext))
+    .filter((path) => path.endsWith(ext))
     .withRelativePaths()
     .crawl(libraryDir)
     .withPromise();

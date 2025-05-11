@@ -1,4 +1,3 @@
-// TODO: Fix the mouse hovering over buttons while resizing
 // TODO: Think about using something other than vw for size (If a user resizes to only show sidebar icons, it messes with that on a resize)
 
 const handle = document.getElementById('handle');

@@ -25,13 +25,4 @@ function fetchAndInjectHTML(url, containerId) {
         });
 }
 
-// TODO: Functions to change window to home and to different playlists
-function toHome() {
-
-};
-
-function toPlaylist(playlistURL) {
-
-};
-
 document.addEventListener('DOMContentLoaded', populateBody);
