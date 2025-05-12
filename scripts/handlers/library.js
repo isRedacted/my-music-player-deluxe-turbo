@@ -22,8 +22,6 @@ export async function readLibraryFiles(ext) {
     .withRelativePaths()
     .crawl(libraryDir)
     .withPromise();
-
-    console.log(libraryFiles);
     
     return libraryFiles;
 }
