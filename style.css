@@ -55,6 +55,10 @@ button {
     font-weight: 600;
 }
 
+body {
+    scrollbar-color: var(--color-accentColor) var(--color-secondaryColor);
+}
+
 .clickable {
     cursor: pointer;
     filter: brightness(100%);
