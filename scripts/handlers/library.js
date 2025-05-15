@@ -1,9 +1,9 @@
 import { fdir } from 'fdir';
-import { readSettingsFile, settingsExists } from './settings.js';
+import { readSettingsFile, settingsFileExists } from './settingsFile.js';
 
 let libraryDir;
 
-if (settingsExists()) {
+if (settingsFileExists()) {
     libraryDir = readSettingsFile('libraryDir');
 }
 

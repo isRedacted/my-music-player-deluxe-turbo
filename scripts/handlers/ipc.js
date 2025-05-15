@@ -1,6 +1,6 @@
 import { ipcMain, dialog, app, BrowserWindow } from 'electron';
 import { basename, extname, join } from 'path';
-import * as settingsFile from './settings.js';
+import * as settingsFile from './settingsFile.js';
 import * as templates from '../window_templates.js';
 import { readLibraryFiles } from './library.js';
 
