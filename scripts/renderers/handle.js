@@ -11,7 +11,7 @@ let animationFrameId = null;
 // Default width is in vw
 let defaultSidebarWidth = 20;
 
-const minSidebarWidth = 1;
+const minSidebarWidth = 2;
 let maxSidebarWidth = vwToPx(50);
 let mainRect = mainSplitView.getBoundingClientRect();
 
@@ -37,11 +37,11 @@ function updateSidebarWidth(e) {
 
 async function saveSidebarWidth() {
     // Save sidebar location
-    await window.electronAPI.writeSettings("lastSidebarWidth", sidebar.style.width);
+    await window.electronAPI.writeSettingsFile("lastSidebarWidth", sidebar.style.width);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const lastSidebarWidth = await window.electronAPI.readSettings('lastSidebarWidth');
+    const lastSidebarWidth = await window.electronAPI.readSettingsFile('lastSidebarWidth');
     if (lastSidebarWidth == undefined) {
         sidebar.style.width = `${defaultSidebarWidth}vw`;
     } else {
