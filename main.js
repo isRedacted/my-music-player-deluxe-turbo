@@ -7,6 +7,7 @@ import { registerIPCHandlers } from './scripts/handlers/ipc.js';
 const rootDir = app.getAppPath();
 let win;
 
+// If the settings file hasn't been created or there is no library directory, open no_library, otherwise open to the main page
 const createInitialWindow = () => {
 	// TODO: Fix this nested if statement...somehow
 	if (settingsFile.settingsFileExists()) {
