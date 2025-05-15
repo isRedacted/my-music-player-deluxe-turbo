@@ -29,13 +29,3 @@ export function writeSettingsFile(key, value) {
 export function settingsFileExists() {
 	return existsSync(settingsFile);
 };
-// Get settings file and open main window, or open library dialog window if (settings file doesn't exist / libraryDir not in settings / libraryDir no longer exists)
-export function checkLibraryDir() {
-	let settingsJSON = {};
-	try {
-		settingsJSON = readSettingsFile();
-	} finally {
-		const libraryDir = settingsJSON['libraryDir'];
-		return settingsExists() && settingsJSON.hasOwnProperty('libraryDir') && existsSync(libraryDir);
-	}
-}
