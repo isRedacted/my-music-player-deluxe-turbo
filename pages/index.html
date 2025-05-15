@@ -10,14 +10,14 @@
 	<title>My Music Player DELUXE TURBO</title>
 </head>
 
-<body class="h-screen m-0 text-textColor font-display text-fontSizeSmall">
-		<div id="main-split-area" class="w-full h-screen flex">
-			<!-- TODO: Ensure that if sidebar elements go off the screen they don't take the player controls with them -->
-			<div id="sidebar" class="bg-primaryColor z-0 overflow-auto"></div>
-			<div id="handle" class="w-1.25 bg-backgroundColor cursor-col-resize z-10"></div>
-			<div id="main-content-area" class="flex-1 grow-1 w-full bg-primaryColor h-full z-20"></div>
-		</div>
-		<div id="control-panel" class="bg-secondaryColor h-19 fixed bottom-0 left-0 border-t-5 border-t-backgroundColor z-20">
+<body class="m-0 text-textColor font-display text-fontSizeSmall overflow-hidden flex flex-col h-screen">
+	<div id="main-split-area" class="w-full h-screen flex flex-1 overflow-hidden">
+		<!-- TODO: Ensure that if sidebar elements go off the screen they don't take the player controls with them -->
+		<div id="sidebar" class="bg-primaryColor z-0 overflow-auto"></div>
+		<div id="handle" class="w-1.25 bg-backgroundColor cursor-col-resize z-10"></div>
+		<div id="main-content-area" class="flex-1 grow-1 w-full bg-primaryColor h-full z-20"></div>
+	</div>
+	<div id="control-panel" class="bg-secondaryColor h-19 border-t-5 border-t-backgroundColor z-21">
 	</div>
 </body>
 <script type="module" src="../scripts/renderers/handle.js"></script>
