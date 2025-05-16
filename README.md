@@ -6,14 +6,17 @@ A (work in progress) music player that does all the things *I* want it to do. No
 # Planned Features
 - M3U-based playlist organisation
 	- Relative pathing for easy syncing using a service like [Syncthing](https://syncthing.net/)
-- Supports MP3, M4A, FLAC, and WAV
+- Supports MP3, M4A, FLAC, WAV, and more!
 - Library browsing
 - Background file monitoring for changes
 - Last.fm integration
 - Tag editing
-- Android/iOS (on the "nice to have" list)
 - Free forever (like beer and speech)
 	- I'm making this for fun and to improve my programming skills. I will never ever ever charge money for it or any of its features.
+## On the "nice to have" list
+- Android/iOS ports
+- Bulk library file organisation (Organising into folders and renaming based on tags)
+- Editable layout
 
 # Installation
 ## Windows
