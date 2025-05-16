@@ -2,8 +2,8 @@ const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
     selectFolder: () => ipcRenderer.invoke('dialog:openFolder'),
-    writeSettings: (key, value) => ipcRenderer.send('write-settings', key, value),
-    readSettings: (key) => ipcRenderer.invoke('read-settings', key),
+    writeSettingsFile: (key, value) => ipcRenderer.send('write-settings-file', key, value),
+    readSettingsFile: (key) => ipcRenderer.invoke('read-settings-file', key),
     openMainWindow: () => ipcRenderer.send('open-main-window'),
     rootDir: () => ipcRenderer.invoke('root-dir'),
     join: (...paths) => ipcRenderer.invoke('join', ...paths),

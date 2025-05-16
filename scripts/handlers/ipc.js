@@ -1,6 +1,6 @@
 import { ipcMain, dialog, app, BrowserWindow } from 'electron';
 import { basename, extname, join } from 'path';
-import * as settings from './settings.js';
+import * as settingsFile from './settingsFile.js';
 import * as templates from '../window_templates.js';
 import { readLibraryFiles } from './library.js';
 
@@ -17,12 +17,12 @@ export function registerIPCHandlers(win) {
 		return result.canceled ? null : result.filePaths[0];
 	});
 
-	// Handle JSON read/write operations
-	ipcMain.handle('read-settings', (event, key) => {
-		return settings.readSettings(key);
+	// Handle JSON settings read/write operations
+	ipcMain.handle('read-settings-file', (event, key) => {
+		return settingsFile.readSettingsFile(key);
 	});
-	ipcMain.on('write-settings', (event, key, value) => {
-		settings.writeSettings(key, value);
+	ipcMain.on('write-settings-file', (event, key, value) => {
+		settingsFile.writeSettingsFile(key, value);
 	});
 
 	// Open main window

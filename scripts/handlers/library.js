@@ -1,10 +1,10 @@
 import { fdir } from 'fdir';
-import { readSettings, settingsExists } from './settings.js';
+import { readSettingsFile, settingsFileExists } from './settingsFile.js';
 
 let libraryDir;
 
-if (settingsExists()) {
-    libraryDir = readSettings('libraryDir');
+if (settingsFileExists()) {
+    libraryDir = readSettingsFile('libraryDir');
 }
 
 // Read and return files recursively in a folder, with arguments for an array of extension(s).
@@ -12,7 +12,7 @@ if (settingsExists()) {
 // TODO: Fix extension whitelisting to include multiple extensions
 export async function readLibraryFiles(ext) {
     if (libraryDir === undefined) {
-        libraryDir = readSettings('libraryDir');
+        libraryDir = readSettingsFile('libraryDir');
     }
     let extSearch = '!*.{';
     extSearch = extSearch + ext.join(', ') + '}';
@@ -22,8 +22,6 @@ export async function readLibraryFiles(ext) {
     .withRelativePaths()
     .crawl(libraryDir)
     .withPromise();
-
-    console.log(libraryFiles);
     
     return libraryFiles;
 }

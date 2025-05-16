@@ -9,7 +9,7 @@ document.getElementById("libraryBox").addEventListener('click', async () => {
 document.getElementById("libraryProceed").addEventListener('click', async () => {
     libraryDir = document.getElementById("libraryInput").textContent;
     if (libraryDir != '') {
-        window.electronAPI.writeSettings("libraryDir", libraryDir);
+        window.electronAPI.writeSettingsFile("libraryDir", libraryDir);
         window.electronAPI.openMainWindow();
     }
 });
