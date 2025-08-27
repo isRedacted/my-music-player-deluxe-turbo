@@ -1,4 +1,4 @@
-# My Music Player
+# SemiCrotchet
 A (work in progress) music player that does all the things *I* want it to do. Now DELUXE! And TURBO. Designed to be small and simple. Feel free to fork it or bug me if you want a certain feature!
 
 (Screenshot and logo TBD)
